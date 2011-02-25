@@ -18,18 +18,16 @@ foreach my $port (@ports) {
 		$current_interface = $port;
 	}
 	if ($port =~ /Port ([0-9]+) ([a-z]+)/i) {
-		$dir = "Download" if ($2 eq "Transmit");
-		$dir = "Upload" if ($2 eq "Receive");
-		$data{"Port $1"}{$dir} = $ports[$count + 1] if ($ports[$count + 1] != 0);
+		$data{"Port $1"}{$2} = $ports[$count + 1] if ($ports[$count + 1] != 0);
 	}
 	if ($current_interface eq 'Wireless' && $port eq ' Transmit') {
-		$data{'Wireless'}{'Download'} = $ports[$count + 1];
+		$data{'Wireless'}{'Transmit'} = $ports[$count + 1];
 	} elsif ($current_interface eq 'Wireless' && $port eq ' Receive') {
-		$data{'Wireless'}{'Upload'} = $ports[$count + 1];
+		$data{'Wireless'}{'Receive'} = $ports[$count + 1];
 	} elsif ($current_interface eq 'HomePNA1' && $port eq ' Transmit') {
-		$data{'Coax'}{'Download'} = $ports[$count + 1];
+		$data{'Coax'}{'Transmit'} = $ports[$count + 1];
 	} elsif ($current_interface eq 'HomePNA1' && $port eq ' Receive') {
-		$data{'Coax'}{'Upload'} = $ports[$count + 1];
+		$data{'Coax'}{'Receive'} = $ports[$count + 1];
 	}
 	$count++;
 }
@@ -40,15 +38,27 @@ print "Port: $port\n";
 	print Dumper map { ( $_ => "GAUGE" ) } keys %{ $data{$port} };
 	print Dumper map { ( $_ => $data{$port}{$_} ) } keys %{ $data{$port} };
 	my $rrd = RRD::Simple->new(file => "${port}.rrd");
-	$rrd->create(map { ($_ => "GAUGE" ) } keys %{ $data{$port} }) unless -f "${port}.rrd";
+	$rrd->create(map { ($_ => "COUNTER" ) } keys %{ $data{$port} }) unless -f "${port}.rrd";
 	$rrd->update("${port}.rrd", time(), map { ($_ => $data{$port}{$_}) } keys %{ $data{$port} });
 	my %rtn = $rrd->graph(
 		width => '600',
 		height => '480',
 		destination => '/Users/geoffeg/Sites/stats/',
-                    title => "Network Interface $port",
-                    vertical_label => 'Bytes/sec',
-                    interlaced => ''
+		title => "Network Interface $port",
+		vertical_label => 'Bytes/sec',
+		line_thickness => 2,
+		extended_legend => 1,
+		sources => [ qw(Receive Transmit) ],
+		source_labels => [ ("Upload", "Download" ) ],
+		source_drawtypes => [ ("LINE2", "LINE2") ],
+		"slope-mode" => "",
+		"units-exponent" => "3",
+		"alt-autoscale" => "",
+		"alt-autoscale-max" => "",
+#		"DEF:Transmit=${port}.rrd:Transmit:AVERAGE",
+#		"DEF:Receive=${port}.rrd:Receive:AVERAGE",
+#		'LINE1:Transmit:"upload"',
+#		'LINE1:Receive:"download"'
 	);
 	my $info = $rrd->info;
 	print Dumper $info;
