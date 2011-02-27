@@ -1,7 +1,6 @@
 #!/usr/bin/perl
 use RRD::Simple;
 use LWP::Simple;
-use HTML::Tree;
 use Data::Dumper;
 use HTML::TreeBuilder::XPath;
 
@@ -21,7 +20,7 @@ my $tree = HTML::TreeBuilder::XPath->new;
 $tree->parse($content);
 my @td_cells = $tree->findvalues('/html/body//table[5]//td');
 
-$count = 0;
+my $count = 0;
 my $interface = shift(@interfaces);
 foreach my $td_cell (@td_cells) {
 	$current_interface = $interface if ($td_cell =~ /$interface/);
@@ -54,11 +53,7 @@ foreach my $port (sort keys %data) {
 		"slope-mode" => "",
 		"units-exponent" => "3",
 		"alt-autoscale" => "",
-		"alt-autoscale-max" => "",
-#		"DEF:Transmit=${port}.rrd:Transmit:AVERAGE",
-#		"DEF:Receive=${port}.rrd:Receive:AVERAGE",
-#		'LINE1:Transmit:"upload"',
-#		'LINE1:Receive:"download"'
+		"alt-autoscale-max" => ""
 	);
 	my $info = $rrd->info;
 	#print Dumper $info;

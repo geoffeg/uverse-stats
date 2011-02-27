@@ -5,14 +5,13 @@ This perl script allows you to generate bandwidth usage graphs for any interface
 The script was developed against a 2Wire 3800HGV-B running version 6. It may not work against other versions or devices.
 
 ### Installation
-1: You'll need to insall the required perl modules. Basically:
+1: You'll need to install the required perl modules. Basically:
 
         bash# sudo perl -MCPAN -eshell
         ... (answer "yes" if this if CPAN asks you to do a quick setup)
         ... (answer "yes" to any pre-requsite module questions for the following modules)
         cpan[1]> install RRD::Simple
         cpan[1]> install LWP::Simple
-        cpan[1]> install HTML::Tree
         cpan[1]> install Data::Dumper
         cpan[1]> install HTML::TreeBuilder::XPath
 
@@ -23,3 +22,9 @@ The script was developed against a 2Wire 3800HGV-B running version 6. It may not
         * * * * * cd ~/stats/uverse-stats && ./uverse.pl
 
 Please do not email me with questions related to installing perl modules. There are many guides on the web.
+
+### TODO
+* Error rates
+* Global/total broadband traffic info (from "Traffic Statistics" on /xslt?PAGE=C_1_0)
+* Include HTML page
+* Simpler perl module installation (via CPANM?)
