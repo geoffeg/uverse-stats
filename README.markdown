@@ -7,7 +7,7 @@ The script was developed against a 2Wire 3800HGV-B running version 6. It may not
 ### Installation
 1. You'll need to insall the required perl modules. Basically:
 
-	# sudo perl -MCPAN -eshell
+	bash# sudo perl -MCPAN -eshell
 	... (answer "yes" if this if CPAN asks you to do a quick setup)
 	... (answer "yes" to any pre-requsite module questions for the following modules)
 	cpan[1]> install RRD::Simple
@@ -20,6 +20,6 @@ The script was developed against a 2Wire 3800HGV-B running version 6. It may not
 
 3. Setup a crontab entry to run the script every minute. (replace ~/stats/uverse-stats with the location of the script
 
-	* * * * * cd ~/stats/uverse-stats && ./uverse.pl
+	\* \* \* \* \* cd ~/stats/uverse-stats && ./uverse.pl
 
 Please do not email me with questions related to installing perl modules. There are many guides on the web.
