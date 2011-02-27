@@ -1,4 +1,4 @@
-#!/opt/local/bin/perl
+#!/usr/bin/perl
 use RRD::Simple;
 use LWP::Simple;
 use HTML::Tree;
