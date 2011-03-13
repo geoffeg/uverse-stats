@@ -24,6 +24,7 @@ The script was developed against a 2Wire 3800HGV-B running version 6. It may not
 Please do not email me with questions related to installing perl modules. There are many guides on the web.
 
 ### TODO
+* Add bandwidth usage stats before AT&T adds caps
 * Error rates
 * Global/total broadband traffic info (from "Traffic Statistics" on /xslt?PAGE=C_1_0)
 * Include HTML page
