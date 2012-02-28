@@ -1,6 +1,11 @@
 == 2Wire i3812V
-"Ethernet AP" does not appear supported
 "Ethernet" is probably supported but this is the ethernet handoff and not usually used.
+
+Interfaces not supported
+ Ethernet  AP XXX (where XXX is some number)
+These are the 4 wires ports on the AP.  Since these don't work, you
+can only see the wireless traffic and the Home PNA devices (settop boxes)
+on your network.  Minor modifications could support this I'm sure.
 
 The following interfaces appear to work for this device:
  Wireless AP XXX (where XXX is some number)
