@@ -1,0 +1,13 @@
+== Fedora specific (tested with fedora 13)
+Quick install perl modules (without CPAN)
+ perl-RRD-Simple
+ perl-HTML-TreeBuilder-XPath
+ perl-XML-TreeBuilder
+ rrdtool-perl
+
+Probably missing a few others, but you get the idea.
+== Setup your output dir
+ mkdir /var/www/html/uversestats/
+Then set your image directory like so, assuming apache:
+ my $images_directory = '/var/www/html/uversestats/';
+

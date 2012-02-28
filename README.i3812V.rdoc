@@ -1,0 +1,11 @@
+== 2Wire i3812V
+"Ethernet AP" does not appear supported
+"Ethernet" is probably supported but this is ethernet handoff not usually used.
+
+The following interfaces appear to work for this device:
+ Wireless AP XXX (where XXX is some number)
+ HomePNA1
+ HomePNA2
+
+This would mean setting your @interfaces to:
+ my @interfaces = ("Wireless AP 193","HomePNA1","HomePNA2");
