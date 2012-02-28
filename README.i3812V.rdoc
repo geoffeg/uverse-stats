@@ -12,8 +12,9 @@ The following interfaces appear to work for this device:
  HomePNA1
  HomePNA2
 
-This would mean setting your @interfaces to:
+This would mean setting your @interfaces in my case to something like this:
  my @interfaces = ("Wireless AP 193","HomePNA1","HomePNA2");
+But you would replace 193 with your unique number for your device.
 
 == About the i3812v
 If you have an "inid" - big box installed outside, it has 2 copper pairs that can be
