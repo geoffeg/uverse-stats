@@ -1,9 +1,9 @@
 == Fedora specific (tested with fedora 13)
 Quick install perl modules (without CPAN)
- perl-RRD-Simple
- perl-HTML-TreeBuilder-XPath
- perl-XML-TreeBuilder
- rrdtool-perl
+ yum install -y perl-RRD-Simple
+ yum install -y perl-HTML-TreeBuilder-XPath
+ yum install -y perl-XML-TreeBuilder
+ yum install -y rrdtool-perl
 
 Probably missing a few others, but you get the idea.
 == Setup your output dir
